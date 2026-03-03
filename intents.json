@@ -1,0 +1,67 @@
+{
+  "intents": [
+    {
+      "tag": "saudacao",
+      "patterns": [
+        "Oi", "Olá", "Opa", "E aí", "Bom dia", "Boa tarde", "Boa noite", 
+        "Tem alguém aí?", "Ei", "Como vai?", "Tudo bem?"
+      ],
+      "responses": [
+        "Olá! Como posso ajudar você hoje?", 
+        "Oi! \u00e9 um prazer ver você de novo.", 
+        "Oi, tudo bem? Em que posso ser util?"
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "despedida",
+      "patterns": [
+        "Tchau", "Até logo", "Adeus", "Até mais", "Fui", 
+        "Até a próxima", "Sair", "Encerrar", "Tenha um bom dia"
+      ],
+      "responses": [
+        "Até mais! Tenha um ótimo dia.", 
+        "Tchau tchau! Volte sempre que precisar.", 
+        "Até logo! Estarei aqui se precisar de algo mais."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "agradecimento",
+      "patterns": [
+        "Obrigado", "Obrigada", "Valeu", "Muito obrigado", 
+        "Ajudou muito", "Show, valeu", "Agradeço a ajuda"
+      ],
+      "responses": [
+        "De nada! Fico feliz em ajudar.", 
+        "Disponha sempre!", 
+        "O prazer é meu!", 
+        "Sem problemas, conte comigo."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "duvida_simplilearn",
+      "patterns": [
+        "O que é a Simplilearn?", "O que vocês fazem?", 
+        "Pode me falar sobre a empresa?", "Simplilearn é o quê?",
+        "Como funciona a Simplilearn?"
+      ],
+      "responses": [
+        "A Simplilearn é uma plataforma popular de Bootcamps e cursos online focada em habilidades digitais e certificações profissionais."
+      ],
+      "context": [""]
+    },
+    {
+      "tag": "ajuda",
+      "patterns": [
+        "Pode me ajudar?", "O que você pode fazer?", 
+        "Preciso de suporte", "Como isso funciona?", "Menu"
+      ],
+      "responses": [
+        "Eu posso te ajudar com informações sobre cursos, responder dúvidas gerais ou apenas conversar. O que você gostaria de saber?"
+      ],
+      "context": [""]
+    }
+  ]
+}

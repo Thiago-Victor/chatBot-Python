@@ -1,0 +1,10 @@
+# Ignora a pasta do ambiente virtual
+chatbot/
+
+# Ignora arquivos de cache do python
+__pycache__/
+*.pyc
+
+# Ignora os arquivos de modelo (opcional, para deixar o github leve)
+*.h5
+*.pkl
