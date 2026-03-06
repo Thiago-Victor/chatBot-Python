@@ -62,6 +62,13 @@
         "Eu posso te ajudar com informações sobre cursos, responder dúvidas gerais ou apenas conversar. O que você gostaria de saber?"
       ],
       "context": [""]
+    },
+    {
+      "tag": "cotacao_dolar",
+      "patterns": [
+      "Quanto está o dólar?", "valor do dolar", 
+      "cotacao dolar" , "e o dolar,cade"],
+      "responses": [""] 
     }
   ]
 }

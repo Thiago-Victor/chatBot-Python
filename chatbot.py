@@ -3,6 +3,8 @@ import json
 import pickle
 import numpy as np
 import tensorflow as tf
+import pywhatkit as pwk
+import requests
 
 import nltk
 from nltk.stem import WordNetLemmatizer
@@ -50,11 +52,36 @@ def getResponse(intentsList, intentsJson):
             result = random.choice(i['responses'])
             break
     return result
+
+def buscar_dolar():
+    try: 
+        url = "https://economia.awesomeapi.com.br/last/USD-BRL"
+        res = requests.get(url)
+        dados = res.json()
+        # Convertemos para float para o :.2f funcionar
+        valor = float(dados['USDBRL']["bid"]) 
+        return f"O dólar está saindo a R$ {valor:.2f} agora."
+    except Exception as e:
+        # Dica: imprimir o erro 'e' ajuda a saber se o site caiu ou se é erro no código
+        return "Ta pobre ein filho, não consegui nem ver a cotação."
+
 print("Go! Bot is running!")
 
 while True:
-    message = input("")
-    ints = predictClass(message)
-    res = getResponse(ints, intents)
-    print(res)
+    message = input("Você: ")
+    if message.lower() in ["sair", "parar", "quit"]:
+        break
 
+    ints = predictClass(message)
+    
+    if len(ints) > 0:
+        tag = ints[0]['intent']
+        
+        if tag == "cotacao_dolar":
+            res = buscar_dolar()
+        else:
+            res = getResponse(ints, intents)
+    else:
+        res = "Não entendi, pode repetir?"
+        
+    print(f"Bot: {res}")
