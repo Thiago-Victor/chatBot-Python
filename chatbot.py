@@ -84,22 +84,24 @@ while True:
         break
 
     ints = predictClass(message)
-    tag = ints[0]['intent']
 
     if len(ints) > 0:
         tag = ints[0]['intent']
         
         if tag == "cotacao_dolar":
             res = buscar_dolar()
+            print(f"Bot: {res}")
+
+        elif tag == "traducao":
+            res_json = getResponse(ints, intents)
+            print(f"Bot: {res_json}")
+            frase_para_processar = input("Sua frase: ")
+            resultado =tradutor(frase_para_processar)
+            print(f"Bot: A tradução é: {resultado}")
+            continue 
+
         else:
-            res = getResponse(ints, intents)
-    elif tag == "traducao":
-        res_json = getResponse(ints, intents)
-        print(f"Bot: {res_json}")
-        frase_para_processar = input("Sua frase: ")
-        resultado =ferramenta_de_traducao(frase_para_processar)
-        print(f"Bot: A tradução é: {resultado}")
+            res3 = "Não entendi, pode repetir?"
+            print(f"Bot: {res3}")
     else:
-          res = "Não entendi, pode repetir?"
-        
-    print(f"Bot: {res}")
+        print("Não entendi, pode repetir? ")
