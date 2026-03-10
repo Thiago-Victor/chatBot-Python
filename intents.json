@@ -8,7 +8,7 @@
       ],
       "responses": [
         "Olá! Como posso ajudar você hoje?", 
-        "Oi! \u00e9 um prazer ver você de novo.", 
+        "Oi! é um prazer ver você de novo.", 
         "Oi, tudo bem? Em que posso ser util?"
       ],
       "context": [""]
@@ -69,6 +69,14 @@
       "Quanto está o dólar?", "valor do dolar", 
       "cotacao dolar" , "e o dolar,cade"],
       "responses": [""] 
+    },
+    {
+      "tag": "traducao",
+      "patterns": [
+      "Pode traduzir para mim ?", "Traduza", 
+      "Bota pra brasileiro" , "fala ai"],
+      "responses": ["Que frase devo Traduzir ?","Fala a frase ai pivete",
+       "Qual a boa parceiro"] 
     }
   ]
 }

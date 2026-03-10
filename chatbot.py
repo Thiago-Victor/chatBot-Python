@@ -5,6 +5,8 @@ import numpy as np
 import tensorflow as tf
 import pywhatkit as pwk
 import requests
+import os 
+from googletrans import Translator
 
 import nltk
 from nltk.stem import WordNetLemmatizer
@@ -12,11 +14,20 @@ from keras.models import load_model
 
 lemmantizer = WordNetLemmatizer()
 
-intents = json.loads(open('intents.json').read())
+translator = Translator()
+translator.translate('Hola, como estás ?')
+intents = json.loads(open('intents.json', encoding='utf-8').read())
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))    
 
-model = load_model('chatbot_simplemodel.h5') 
+model = load_model('chatbot_simplemodel.h5')
+
+def tradutor (Frase_traduzida):
+    try:
+        Resposta = translator.translate(Frase_traduzida, dest ="es")
+        return Resposta.text
+    except Exception as e:
+           return "Internet pode estar ruim"
 
 def cleanUpSentence(sentence):
     sentenceWords = nltk.word_tokenize(sentence)
@@ -64,7 +75,7 @@ def buscar_dolar():
     except Exception as e:
         # Dica: imprimir o erro 'e' ajuda a saber se o site caiu ou se é erro no código
         return "Ta pobre ein filho, não consegui nem ver a cotação."
-
+ 
 print("Go! Bot is running!")
 
 while True:
@@ -73,7 +84,8 @@ while True:
         break
 
     ints = predictClass(message)
-    
+    tag = ints[0]['intent']
+
     if len(ints) > 0:
         tag = ints[0]['intent']
         
@@ -81,7 +93,13 @@ while True:
             res = buscar_dolar()
         else:
             res = getResponse(ints, intents)
+    elif tag == "traducao":
+        res_json = getResponse(ints, intents)
+        print(f"Bot: {res_json}")
+        frase_para_processar = input("Sua frase: ")
+        resultado =ferramenta_de_traducao(frase_para_processar)
+        print(f"Bot: A tradução é: {resultado}")
     else:
-        res = "Não entendi, pode repetir?"
+          res = "Não entendi, pode repetir?"
         
     print(f"Bot: {res}")
